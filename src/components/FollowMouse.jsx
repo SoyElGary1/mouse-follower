@@ -4,7 +4,7 @@ export const FollowMouse = () => {
     const [enable, setEnable] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  // Cada vez que cambie el valor de enable se activa el efecto
+  // Pointer move
   useEffect(() => {
     //console.log("effect", { enable });
 
@@ -26,6 +26,17 @@ export const FollowMouse = () => {
       window.removeEventListener("pointermove", handleMove)
     }
   }, [enable]);
+
+  useEffect(() =>{
+    document.body.classList.toggle('no-cursor', enable)
+
+    return () =>{
+        document.body.classList.remove('no-cursor')
+    }
+  }, [enable])
+
+
+
   return (
     <main>
       <div
